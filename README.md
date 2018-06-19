@@ -1,0 +1,2 @@
+# PublicBS
+Public Brightsign Scripts
