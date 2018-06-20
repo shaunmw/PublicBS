@@ -64,6 +64,8 @@ Function REST_ProcessEvent(event As Object) as boolean
 			if event.GetUserData() = "restControl" then
 				if event.GetRequestParam("cmd") <> "" then
 					m.zoneMsgSend(event.GetRequestParam("cmd"))
+					event.SetResponseBodyString("CMD_Received: "+event.GetRequestParam("cmd"))
+					event.SendResponse(200)
 					retval = true
 				else
 					? "There is no parameter"
