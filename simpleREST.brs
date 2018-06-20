@@ -66,7 +66,7 @@ Function REST_ProcessEvent(event As Object) as boolean
 					m.zoneMsgSend(event.GetRequestParam("cmd"))
 					retval = true
 				else
-					? "There is not parameter"
+					? "There is no parameter"
 				endif
 			endif		
 		endif			
