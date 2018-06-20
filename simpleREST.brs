@@ -1,7 +1,7 @@
 'Plugin Name	: 	REST
-'Plugin Version	:	0.1
-'Date Modified	:	19/06/2018
-'Created By		:	SW
+'Plugin Version	:	0.3
+'Date Modified	:	21/06/2018
+'Created By	:	SW
 
 Function REST_Initialize(msgPort As Object, userVariables As Object, bsp as Object)
 
@@ -13,15 +13,15 @@ End Function
 Function newREST(msgPort As Object, userVariables As Object, bsp as Object)
 
 	' Create the object to return and set it up
-	s 				= 	{}
-	s.version 		= 	0.1
+	s 			= 	{}
+	s.version 		= 	0.3
 	s.msgPort 		= 	msgPort
-	s.userVariables = 	userVariables
+	s.userVariables 	= 	userVariables
 	s.bsp 			= 	bsp
-	s.ProcessEvent 	= 	REST_ProcessEvent
+	s.ProcessEvent 		= 	REST_ProcessEvent
 	
 	'Zone Msg
-	s.zoneMsgSend 	= 	zoneMsgSend
+	s.zoneMsgSend 		= 	zoneMsgSend
 	
 	'HTTP Server
 	s.newREST		=	createobject("roHttpServer", {port : 9000})
@@ -32,7 +32,7 @@ Function newREST(msgPort As Object, userVariables As Object, bsp as Object)
 	})
 		
 	'Object Name
-	s.objectName 	= 	"REST_object"
+	s.objectName 		= 	"REST_object"
 	
 	return s
 
@@ -88,7 +88,7 @@ End Function
 REM Send a zone message to Presentation.
 Function zoneMsgSend(cmd$ As String)
 	
-	zoneMessageCmd = CreateObject("roAssociativeArray")
+	zoneMessageCmd 	= CreateObject("roAssociativeArray")
 	zoneMessageCmd["EventType"] = "SEND_ZONE_MESSAGE"
 	zoneMessageCmd["EventParameter"] = cmd$
 	m.bsp.msgPort.PostMessage(zoneMessageCmd)	
