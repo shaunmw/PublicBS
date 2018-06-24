@@ -1,6 +1,6 @@
 'Plugin Name	: 	REST
-'Plugin Version	:	0.3
-'Date Modified	:	21/06/2018
+'Plugin Version	:	0.4
+'Date Modified	:	24/06/2018
 'Created By	:	SW
 
 Function REST_Initialize(msgPort As Object, userVariables As Object, bsp as Object)
@@ -14,7 +14,7 @@ Function newREST(msgPort As Object, userVariables As Object, bsp as Object)
 
 	' Create the object to return and set it up
 	s 			= 	{}
-	s.version 		= 	0.3
+	s.version 		= 	0.4
 	s.msgPort 		= 	msgPort
 	s.userVariables 	= 	userVariables
 	s.bsp 			= 	bsp
