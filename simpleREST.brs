@@ -69,6 +69,10 @@ Function REST_ProcessEvent(event As Object) as boolean
 					retval = true
 				else
 					? "There is no parameter"
+					event.SetResponseBodyString("Invalid pararmeter. Try cmd=command")
+					event.SendResponse(200)
+					? "Don't pass this to another plugin"
+					retval = true
 				endif
 			endif		
 		endif			
