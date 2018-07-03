@@ -1,7 +1,7 @@
 'Plugin Name	: 	tcpServer
-'Plugin Version	:	0.15
-'Date Modified	:	03/07/2018
-'Created By		:	SW
+'Plugin Version	:	0.16
+'Date Modified	:	04/07/2018
+'Created By	:	SW
 
 Function tcpServer_Initialize(msgPort As Object, userVariables As Object, bsp as Object)
 
@@ -13,18 +13,18 @@ End Function
 Function newtcpServer(msgPort As Object, userVariables As Object, bsp as Object)
 
 	' Create the object to return and set it up
-	s 				= 	{}
+	s 			= 	{}
 	s.version 		= 	0.15
 	s.msgPort 		= 	msgPort
-	s.userVariables = 	userVariables
+	s.userVariables 	= 	userVariables
 	s.bsp 			= 	bsp
-	s.ProcessEvent 	= 	tcpServer_ProcessEvent
+	s.ProcessEvent 		= 	tcpServer_ProcessEvent
 	
 	'Zone Msg
-	s.zoneMsgSend 	= 	zoneMsgSend
+	s.zoneMsgSend 		= 	zoneMsgSend
 	
 	s.acceptTCPConnection 	= 	acceptTCPConnection
-	s.closeTCP				=	closeTCP
+	s.closeTCP		=	closeTCP
 	
 	'TCP Section
 	s.tcpServ = CreateObject("roTCPServer")
@@ -34,12 +34,11 @@ Function newtcpServer(msgPort As Object, userVariables As Object, bsp as Object)
 		name : "tcpPort01"
 	})
 	
+	'This is where the TCP connections are stored.
 	s.tcpConnections = CreateObject("roArray",1,true)
-	
-	? s.tcpConnections.count()
 		
 	'Object Name
-	s.objectName 	= 	"tcpServer_object"
+	s.objectName 		= 	"tcpServer_object"
 	
 	return s
 
@@ -99,8 +98,11 @@ Function ParsetcpServerPluginMsg(origMsg as string, s as object) as boolean
 	
 End Function
 
+REM Create and accept the incoming TCP connection
 Function acceptTCPConnection(connection as object, s as object) as boolean
-
+	
+	'No conditions are tested for safety as this is for testing and will always return as handled.
+	
 	retval = false
 	
 	index% = s.tcpConnections.count()
@@ -111,20 +113,24 @@ Function acceptTCPConnection(connection as object, s as object) as boolean
 	conn.Accept(connection)
 	conn.SetUserData(index%)
 	
+	'Add the connection to the array. This will keep growing until you restart the player.
+	'I would normally cap this at 20 and reshuffle the index% when full
+	'0=tcp0,1=invalid(closed),2=tcp2 would become 0=tcp,1=tcp2 just to manage the active connections when you have 100's
+	
 	s.tcpConnections.push(conn)
 
 	return retval
 
 End Function
 
+REM Close a disconnected connection and makes it's instance invalid
 Function closeTCP(index% as integer, s as object) as boolean
 
+	'No conditions are tested for safety as this is for testing and will always return as handled.
+	
 	retval = false
-	
-	s.tcpConnections[index%] = invalid
-	
-	retval = true
-	
+	s.tcpConnections[index%] = invalid	
+	retval = true	
 	return retval
 	
 End Function
