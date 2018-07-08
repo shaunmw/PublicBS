@@ -1,6 +1,6 @@
 'Plugin Name	: 	tcpServer
 'Plugin Version	:	0.16
-'Date Modified	:	04/07/2018
+'Date Modified	:	08/07/2018
 'Created By	:	SW
 
 Function tcpServer_Initialize(msgPort As Object, userVariables As Object, bsp as Object)
@@ -14,7 +14,7 @@ Function newtcpServer(msgPort As Object, userVariables As Object, bsp as Object)
 
 	' Create the object to return and set it up
 	s 			= 	{}
-	s.version 		= 	0.15
+	s.version 		= 	0.16
 	s.msgPort 		= 	msgPort
 	s.userVariables 	= 	userVariables
 	s.bsp 			= 	bsp
