@@ -60,7 +60,7 @@ Function tcpServer_ProcessEvent(event As Object) as boolean
 				if event["PluginName"] = "tcpServer" then
 					pluginMessage$ = event["PluginMessage"]
 					? "SEND_PLUGIN/EVENT_MESSAGE:";pluginMessage$
-					retval = ParsenetCommPluginMsg(pluginMessage$, m)
+					retval = ParsetcpServerPluginMsg(pluginMessage$, m)
 				endif
 			endif
 		endif			
